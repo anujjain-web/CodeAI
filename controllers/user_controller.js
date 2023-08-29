@@ -42,5 +42,6 @@ module.exports.create = function(req , res){
 }
 
 module.exports.createSession = function(req , res){
-    // Todo
+    // redirecting to home page after setting/verifying up authentication using passport.js
+    return res.redirect('/');
 }

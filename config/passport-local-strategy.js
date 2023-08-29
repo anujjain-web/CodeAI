@@ -16,7 +16,7 @@ passport.use(new LocalStrategy({
             }
             return done(null, user);
         }).catch(err =>{
-            console.log('error in finding user',err);
+            console.log('error in finding user --> passport',err);
             return done(err);
         });
     }
