@@ -11,7 +11,7 @@ passport.use(new LocalStrategy({
         User.findOne({email: email}).then(user =>{
 
             if(!user || user.password != password){
-                console.log('Invalid Username/Password',err);
+                console.log('Invalid Username/Password');
                 return done(null, false);
             }
             return done(null, user);
@@ -34,5 +34,20 @@ passport.deserializeUser(function(id, done){
         return done(err);
     });
 });
+
+// to render views to the authenticated/logged_in user
+passport.checkAuthentication = function(req , res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    return res.redirect('/users/sign-in');
+}
+
+passport.setAuthenticatedUser = function(req, res, next){
+    if(req.isAuthenticated()){
+        res.locals.user = req.user;
+    }
+    next();
+}
 
 module.exports = passport;

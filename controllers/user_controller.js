@@ -1,3 +1,4 @@
+const passport = require('passport');
 const User = require('../models/user');
 
 module.exports.Profile = function(req ,res){
@@ -7,12 +8,18 @@ module.exports.Profile = function(req ,res){
 }
 
 module.exports.signUp = function (req, res) {
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('user_sign_up', {
         title: "Sign Up"
     });
 }
 
 module.exports.signIn = function (req, res) {
+    if (req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
     return res.render('user_sign_in', {
         title: "Sign In"
     });
@@ -45,3 +52,10 @@ module.exports.createSession = function(req , res){
     // redirecting to home page after setting/verifying up authentication using passport.js
     return res.redirect('/');
 }
+
+module.exports.signOut = function(req, res, next){
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        return res.redirect('/');
+    }
+    )}
