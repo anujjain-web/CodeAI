@@ -1,0 +1,30 @@
+.nav-bar{
+
+    // 1. Make a flex 
+   // codeAi                       signIn signup 
+   // flex box property 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: chartreuse;
+
+    .heading{
+        color: black;
+        font-weight: bolder;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.6rem;
+    }
+    .profile{
+        align-self: flex-end;
+    }
+    .profile li{
+        color: black;
+        list-style: none;
+        display: inline-flex;
+    }
+    .profile li a{
+        color: black;
+        text-decoration: none;
+    }
+}
